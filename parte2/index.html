@@ -24,7 +24,12 @@
 
 		<!--- RESPOSTA 1 ---->
 		<script>
-			console.log('resposta 1');
+			let divisiveis = [];
+			for(let i = 0; i < 100; i++){
+				if (i % 7 == 0) divisiveis.push(i);
+			}
+
+			console.log('resposta 1', divisiveis)
 			//insira a resposta aqui.
 		</script>
 
@@ -33,7 +38,16 @@
 		<p>2)Crie uma função que receba dois parâmetros, o primeiro chamado 'texto' (string) e o segundo chamado 'vezes' (número), com o objetivo retornar uma nova string com o texto repetido quantas vezes foi passado no parâmetro 'vezes', separado por vírgula. Exibir esta nova string no console.</p>
 		<!--- RESPOSTA 2 ---->
 		<script>
-			console.log('resposta 2');
+			function palavraVezes(palavra, repeticoes){
+				let palavras = [];
+				for(let i = 0; i < repeticoes; i++){
+					palavras.push(palavra);
+				}
+
+				return palavras.join(',')
+			}
+
+			console.log('resposta 2', palavraVezes('teste', 5));
 			//insira a resposta aqui.
 		</script>
 
@@ -48,7 +62,12 @@
 
 		<!--- RESPOSTA 3 ---->
 		<script>
-			console.log('resposta 3');
+			let pai = document.querySelector('.pai');
+			let filho = document.querySelector('.filho');
+			filho.parentElement.removeChild(filho);
+			pai.appendChild(filho);
+
+			console.log('resposta 3', pai);
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -61,13 +80,16 @@
 			<li>inserir uma classe 'last' no último parágrafo</li>
 		</ol>
 		<!--- RESPOSTA 4 ---->
-		<div style="display: none;">
+		<div style="display: none;" id="questao-4">
 			<p>texto</p>
 			<p>texto</p>
 			<p>texto</p>
 		</div>
 		<script>
-			console.log('resposta 4');
+			let paragrafos = document.querySelectorAll('#questao-4 p');
+			paragrafos[1].innerHTML = 'Texto alterado';
+			paragrafos[2].classList.add('last')
+			console.log('resposta 4', paragrafos);
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -76,7 +98,10 @@
 
 		<!--- RESPOSTA 5 ---->
 		<script>
-			console.log('resposta 5');
+			function maior(idade){
+				return idade >= 18 ? 'Maior de idade' : 'Menor de idade';
+			}
+			console.log('resposta 5', maior(18));
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -91,11 +116,20 @@
 		</ol>
 		<!--- RESPOSTA 6 ---->
 		<script>
-			console.log('resposta 6');
 			var obj = {
 				nomeObj: 'Mouse',
 				pesoObj: '150g'
 			}
+
+			function mudarObj(){
+				obj.nomeObj = 'Teclado';
+				obj.pesoObj = '500g';
+	
+				let objArray = [obj.nomeObj, obj.pesoObj];
+				return objArray;
+			}
+
+			console.log('resposta 6', mudarObj());
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -109,7 +143,11 @@
 		</ol>
 		<!--- RESPOSTA 7 ---->
 		<script>
-			console.log('resposta 7');
+			let text = 'Eu quero trabalhar na Seri.e Design';
+			let palavras = text.split(' ');
+
+			// 'Palavras invertidas, ultima palavra, Quantidade caractéres, tipo da variavel'
+			console.log('resposta 7', palavras.reverse().join('!'), palavras.reverse()[palavras.length - 1], text.length, typeof(palavras));
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -121,13 +159,19 @@
 		<p>faça uma função para adicionar o atributo 'data-id' em cada uma das divs, com o valor sendo a posição que se encontra a div na lista. Ex.: &lt;div data-id="2"&gt;</p>.
 		<!--- RESPOSTA 8 ---->
 
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
+		<div id="questao-8">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 		<script>
-			console.log('resposta 8');
+			let divs = document.querySelectorAll('#questao-8 div');
+			divs.forEach(function(div, i) {
+				div.setAttribute('data-id', i + 1);
+			});
+			console.log('resposta 8', divs);
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -152,7 +196,19 @@
 			</ul>
 		</div>
 		<script>
-			console.log('resposta 9');
+			let content = document.querySelector('.content');
+			let subcontainer = document.querySelector('.subcontainer');
+			let lis = document.querySelectorAll('.content ul li');
+			lis.forEach(function(li) {
+				li.addEventListener('click', function(e){
+					let ulSubcategoria = this.querySelector('.subcontainer ul');
+					ulSubcategoria.style.display = 'block';
+				});
+			});
+			content.classList.add('active');
+			subcontainer.classList.add('active');
+
+			console.log('resposta 9', content, subcontainer, lis);
 			//insira a resposta aqui.
 		</script>
 		<div class="border"></div>
@@ -160,7 +216,7 @@
 		<p>10) Dado o seguinte bloco de código:</p>
 		<pre>function observer() {<br>&nbsp;&nbsp;var target = '';<br>&nbsp;&nbsp;var restSecs = 0;<br>&nbsp;&nbsp;var intervalObserver = setInterval(function() {<br>&nbsp;&nbsp;&nbsp;&nbsp;target = document.querySelector('footer .content');<br>&nbsp;&nbsp;&nbsp;&nbsp;if ($(target).length >= 1 && restSecs &lt;= 5) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//do something<br>&nbsp;&nbsp;&nbsp;&nbsp;} else if( restSecs==5 ){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clearInterval(intervalObserver); <br>&nbsp;&nbsp;&nbsp;&nbsp;} else { <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restSecs++; }<br>&nbsp;&nbsp; }, 1000); <br>} observer();</pre>
 		<script>
-			console.log('resposta 10');
+			console.log('resposta 10', '4');
 			function observer() {
 				var target = '';
 				var restSecs = 0;
@@ -187,7 +243,7 @@
 		</ol>
 		<!--- RESPOSTA 10 ---->
 		<div>
-			<p style="color: #F00;">RESPOSTA: </p>
+			<p style="color: #F00;">RESPOSTA: 4</p>
 		</div>
 	</div>
 </body>
